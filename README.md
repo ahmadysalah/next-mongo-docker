@@ -34,6 +34,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ```
+docker-compose up -d
+
 # Build the Docker image
 docker build -t my-app .
 
