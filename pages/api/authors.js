@@ -1,4 +1,4 @@
-import Blogs from '../../lib/controllers/blogs'
+import Author from '../../lib/controllers/authors'
 import { errorResponse, successResponse } from '../../lib/helper'
 
 export default async function handler(req, res) {
@@ -6,12 +6,21 @@ export default async function handler(req, res) {
     const id = req?.query?.id
     switch (req.method) {
       case 'GET':
-        const blogs = await Blogs.getBlogs(id)
-        successResponse(res, { data: blogs })
+        const authors = await Author.getAuthors(id)
+        successResponse(res, { data: authors })
         break
       case 'POST':
-        const newBlog = await Blogs.createBlog(req.body)
-        successResponse(res, { data: newBlog })
+        const newAuthor = await Author.createAuthor(req.body)
+        successResponse(res, { data: newAuthor })
+        break
+      case 'PATCH':
+        const updatedAuthor = await Author.updateAuthorById(id, req.body)
+        successResponse(res, { data: updatedAuthor })
+        break
+      case 'DELETE':
+        const deletedAuthor = await Author.deleteAuthorById(id)
+        successResponse(res, { data: deletedAuthor })
+        break
       default:
         errorResponse(res, { message: 'Bad request method' })
         break
